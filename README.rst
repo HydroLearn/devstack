@@ -1,8 +1,10 @@
 Getting Started with HydroLearn
 ===============================
 
-(Prerequisites, docker and docker-compose)
+(Prerequisites - docker and docker-compose)
+
     https://docs.docker.com/install/linux/docker-ce/ubuntu/
+
     https://docs.docker.com/compose/install/
 
 1. Clone this repo (be sure to use ssh, not https).  Clone it to ~/workspace to 
@@ -10,7 +12,7 @@ Getting Started with HydroLearn
 
 .. code:: sh
 
-    git clone https://github.com/HydroLearn/devstack.git
+    git clone git@github.com:HydroLearn/devstack.git
 
 2. Install the requirements inside of a `Python virtualenv`_.
 
@@ -50,7 +52,15 @@ Getting Started with HydroLearn
 
        make pull
 
-5. Run the provision command, if you haven't already, to configure the various
+5. Checkout our master branch of HydroLearn
+
+   .. code:: sh
+
+       cd ../edx-platform
+       git checkout hydrolearn/ironwood.master
+       cd ../devstack
+ 
+6. Run the provision command, if you haven't already, to configure the various
    services with superusers (for development without the auth service) and
    tenants (for multi-tenancy).
 
@@ -73,7 +83,7 @@ Getting Started with HydroLearn
 
        make dev.sync.provision
 
-6. Start the services. This command will mount the repositories under the
+7. Start the services. This command will mount the repositories under the
    DEVSTACK\_WORKSPACE directory.
 
    **NOTE:** it may take up to 60 seconds for the LMS to start, even after the ``make dev.up`` command outputs ``done``.
@@ -89,6 +99,7 @@ Getting Started with HydroLearn
    .. code:: sh
 
        make dev.sync.up
+
 Open edX Devstack |Build Status|
 ================================
 
