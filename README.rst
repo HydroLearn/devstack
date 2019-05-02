@@ -1,3 +1,94 @@
+Getting Started with HydroLearn
+===============================
+
+(Prerequisites, docker and docker-compose)
+    https://docs.docker.com/install/linux/docker-ce/ubuntu/
+    https://docs.docker.com/compose/install/
+
+1. Clone this repo (be sure to use ssh, not https).  Clone it to ~/workspace to 
+   avoid extra configuration described in step 3.
+
+.. code:: sh
+
+    git clone https://github.com/HydroLearn/devstack.git
+
+2. Install the requirements inside of a `Python virtualenv`_.
+
+   .. code:: sh
+
+       make requirements
+
+4. Set the OPENEDX_RELEASE environment variable to our current base release
+   (ironwood.master).  Be sure to add it to your ~/.bashrc file to set the 
+   variable each time you open a terminal 
+
+   .. code:: sh
+
+       export OPENEDX_RELEASE=ironwood.master
+
+3. The Docker Compose file mounts a host volume for each service's executing
+   code. The host directory defaults to be a sibling of this directory. For
+   example, if this repo is cloned to ``~/workspace/devstack``, host volumes
+   will be expected in ``~/workspace/course-discovery``,
+   ``~/workspace/ecommerce``, etc. These repos can be cloned with the command
+   below.
+
+   .. code:: sh
+
+       make dev.clone
+
+   You may customize where the local repositories are found by setting the
+   DEVSTACK\_WORKSPACE environment variable.
+   
+   Be sure to share the cloned directories in the Docker -> Preferences... ->
+   File Sharing box.
+
+
+4. Pull any changes made to the various images on which the devstack depends.
+
+   .. code:: sh
+
+       make pull
+
+5. Run the provision command, if you haven't already, to configure the various
+   services with superusers (for development without the auth service) and
+   tenants (for multi-tenancy).
+
+   **NOTE:** When running the provision command, databases for ecommerce and edxapp
+   will be dropped and recreated.
+
+   The username and password for the superusers are both ``edx``. You can access
+   the services directly via Django admin at the ``/admin/`` path, or login via
+   single sign-on at ``/login/``.
+
+   Default:
+
+   .. code:: sh
+
+       make dev.provision
+
+   Provision using `docker-sync`_:
+
+   .. code:: sh
+
+       make dev.sync.provision
+
+6. Start the services. This command will mount the repositories under the
+   DEVSTACK\_WORKSPACE directory.
+
+   **NOTE:** it may take up to 60 seconds for the LMS to start, even after the ``make dev.up`` command outputs ``done``.
+
+   Default:
+
+   .. code:: sh
+
+       make dev.up
+
+   Start using `docker-sync`_:
+
+   .. code:: sh
+
+       make dev.sync.up
 Open edX Devstack |Build Status|
 ================================
 
