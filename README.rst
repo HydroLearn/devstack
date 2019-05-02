@@ -52,11 +52,16 @@ Getting Started with HydroLearn
 
        make pull
 
-5. Checkout our master branch of HydroLearn
+5. Clone Hydrolearn and Checkout our current master branch. (hydrolearn has been disabled
+   from the repo cloning because the script only checkouts a single branch... making it hard
+   to work with the repo.  This will also prevent the next command from checking out 
+   open-release/ironwood.master, and leave your hydrolearn repo alone)
 
    .. code:: sh
 
-       cd ../edx-platform
+       cd ../
+       git clone git@github.com:HydroLearn/edx-platform.git
+       cd edx-platform
        git checkout hydrolearn/ironwood.master
        cd ../devstack
  
