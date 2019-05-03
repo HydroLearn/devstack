@@ -69,6 +69,10 @@ Getting Started with HydroLearn
    services with superusers (for development without the auth service) and
    tenants (for multi-tenancy).
 
+   **NOTE:** The provision command will try to checkout and update your branches, to
+   avoid this, I recommend you comment out the calls to _checkout_and_update_branch on
+   lines 60 and 87 in repo.sh 
+
    **NOTE:** When running the provision command, databases for ecommerce and edxapp
    will be dropped and recreated.
 
